@@ -4,4 +4,9 @@
 
 {% block body %}
 <h1>Home</h1>
+    <ul>
+        {% for w in wishes %}
+        <li>{{ w.title }}</li>
+        {% endfor  %}
+    </ul>
 {% endblock %}

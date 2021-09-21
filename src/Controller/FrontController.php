@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\WishRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,10 +12,14 @@ class FrontController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(): Response
+    public function home(WishRepository $repo): Response
     {
+        $wishes = $repo->findBy(
+            ['isPublished' => true],
+            ['dateCreated' => 'ASC']);
+
         return $this->render('front/home.html.twig', [
-            'controller_name' => 'FrontController',
+            'wishes' => $wishes,
         ]);
     }
 
