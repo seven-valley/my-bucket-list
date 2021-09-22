@@ -6,7 +6,7 @@
 <h1>Home</h1>
     <ul>
         {% for w in wishes %}
-        <li>{{ w.title }}</li>
+        <li><a href="{{ path('detail',{id:w.id}) }}">  {{ w.title }}</a></li>
         {% endfor  %}
     </ul>
 {% endblock %}

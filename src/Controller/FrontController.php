@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Wish;
 use App\Repository\WishRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,6 +41,17 @@ class FrontController extends AbstractController
     {
         return $this->render('front/about.html.twig', [
             'controller_name' => 'FrontController',
+        ]);
+    }
+
+    /**
+     * @Route("/detail/{id}", name="detail")
+     */
+    public function detail(Wish $wish): Response
+    {
+
+        return $this->render('front/detail.html.twig', [
+            'wish' => $wish,
         ]);
     }
 }
