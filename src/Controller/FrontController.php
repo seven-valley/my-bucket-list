@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Wish;
 use App\Form\WishType;
+use App\Repository\CategRepository;
 use App\Repository\WishRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -61,9 +62,11 @@ class FrontController extends AbstractController
     /**
      * @Route("/ajouter", name="ajouter")
      */
-    public function ajouter(Request $request,EntityManagerInterface $em): Response
+    public function ajouter(Request $request,EntityManagerInterface $em,CategRepository $repo): Response
     {
+        $categ = $repo->find(5);
         $wish = new Wish();
+       // $wish->setCateg($categ);
         // relier $wish au formulaire
         $formWish = $this->createForm(WishType::class,$wish);
         // Hydrater le $wish

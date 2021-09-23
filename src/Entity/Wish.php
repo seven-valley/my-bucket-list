@@ -42,6 +42,12 @@ class Wish
      */
     private $dateCreated;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Categ::class, inversedBy="wishes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categ;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class Wish
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getCateg(): ?Categ
+    {
+        return $this->categ;
+    }
+
+    public function setCateg(?Categ $categ): self
+    {
+        $this->categ = $categ;
 
         return $this;
     }
