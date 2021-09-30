@@ -28,8 +28,20 @@
                                         href="{{ path('about')}}">About</a></li>
                 <li class="nav-item"><a class="nav-link {% if my_route== 'contact' %}active{% endif %}"
                                         href="{{ path('contact')}}">Contact</a></li>
-                <li class="nav-item"><a class="nav-link {% if my_route== 'ajouter' %}active{% endif %}"
-                                        href="{{ path('ajouter')}}">Ajouter</a></li>
+                {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item"><a class="nav-link {% if my_route== 'ajouter' %}active{% endif %}"
+                                            href="{{ path('ajouter')}}">Ajouter</a></li>
+                <li class="nav-item"><a class="nav-link {% if my_route== 'app_logout' %}active{% endif %}"
+                                        href="{{ path('app_logout')}}">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link {% if my_route== 'app_login' %}active{% endif %}"
+                                        href="{{ path('app_login')}}">Login</a></li>
+                <li class="nav-item"><a class="nav-link {% if my_route== 'app_register' %}active{% endif %}"
+                                        href="{{ path('app_register')}}">S'enregistrer</a></li>
+                {% endif %}
+
+
+
             </ul>
         </div>
     </div>

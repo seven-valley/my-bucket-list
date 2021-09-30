@@ -16,7 +16,7 @@ class WishType extends AbstractType
                 'label'=>'Votre jolie titre',
                 'attr' =>
                 [
-                    
+
                     'placeholder'=>'Votre Titre'
                 ]
             ])

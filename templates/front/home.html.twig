@@ -4,6 +4,9 @@
 
 {% block body %}
 <h1>Home</h1>
+    {% if (is_granted('ROLE_USER')) %}
+    <p>Bonjour {{ app.user.pseudo }}</p>
+    {% endif %}
     <ul>
         {% for w in wishes %}
         <li><a href="{{ path('detail',{id:w.id}) }}">  {{ w.title }}</a></li>

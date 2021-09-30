@@ -60,12 +60,14 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route("/ajouter", name="ajouter")
+     * @Route("/profile/ajouter", name="ajouter")
      */
     public function ajouter(Request $request,EntityManagerInterface $em,CategRepository $repo): Response
     {
         $categ = $repo->find(5);
         $wish = new Wish();
+        $user = $this->getUser();
+        $wish->setAuthor($user->getPseudo());
        // $wish->setCateg($categ);
         // relier $wish au formulaire
         $formWish = $this->createForm(WishType::class,$wish);
